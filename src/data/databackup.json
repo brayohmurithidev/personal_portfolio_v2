@@ -1,0 +1,253 @@
+
+{
+  "hero": {
+    "title": "Hi, I'm Fazilabs",
+    "subtitle": "Full-Stack Developer & AI Enthusiast",
+    "description": "I create amazing digital experiences using cutting-edge technologies. Passionate about building scalable applications and solving complex problems.",
+    "primaryButton": "View My Work",
+    "secondaryButton": "Get In Touch",
+    "backgroundImage": "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=1920&h=1080&fit=crop",
+    "profileImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm a passionate full-stack developer with over 5 years of experience creating digital solutions that make a difference. I specialize in modern web technologies and love turning complex problems into simple, beautiful designs.",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    "highlights": [
+      "5+ years of professional experience",
+      "Full-stack development expertise",
+      "AI and machine learning enthusiast",
+      "Open source contributor"
+    ],
+    "stats": [
+      { "label": "Projects Completed", "value": "50+" },
+      { "label": "Happy Clients", "value": "30+" },
+      { "label": "Code Commits", "value": "1000+" },
+      { "label": "Technologies", "value": "20+" }
+    ]
+  },
+  "skills": {
+    "Frontend": ["React", "Vue.js", "TypeScript", "Next.js", "Tailwind CSS"],
+    "Backend": ["Node.js", "Python", "PHP", "Go", "Express.js"],
+    "Database": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Supabase"],
+    "Cloud & DevOps": ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform"],
+    "Tools & Other": ["Git", "Figma", "Postman", "Jest", "GraphQL"]
+  },
+  "experiences": [
+    {
+      "title": "Senior Full-Stack Developer",
+      "company": "TechCorp Solutions",
+      "location": "San Francisco, CA",
+      "period": "2022 - Present",
+      "description": "Lead development of scalable web applications serving 100K+ users. Architected microservices infrastructure and mentored junior developers.",
+      "technologies": ["React", "Node.js", "AWS", "PostgreSQL", "Docker"],
+      "achievements": [
+        "Reduced application load time by 40% through optimization",
+        "Led team of 5 developers on major product redesign",
+        "Implemented CI/CD pipeline reducing deployment time by 60%"
+      ]
+    },
+    {
+      "title": "Full-Stack Developer",
+      "company": "StartupXYZ",
+      "location": "Remote",
+      "period": "2020 - 2022",
+      "description": "Developed MVP from scratch for fintech startup. Built both frontend and backend systems handling financial transactions.",
+      "technologies": ["Vue.js", "Python", "Flask", "MySQL", "Redis"],
+      "achievements": [
+        "Built secure payment processing system",
+        "Achieved 99.9% uptime for critical services",
+        "Integrated with 5+ third-party APIs"
+      ]
+    },
+    {
+      "title": "Frontend Developer",
+      "company": "Digital Agency Pro",
+      "location": "New York, NY",
+      "period": "2019 - 2020",
+      "description": "Created responsive web applications for various clients. Collaborated with designers to implement pixel-perfect UIs.",
+      "technologies": ["React", "JavaScript", "SASS", "Webpack", "Git"],
+      "achievements": [
+        "Delivered 15+ client projects on time",
+        "Improved client satisfaction scores by 25%",
+        "Established component library for team reuse"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science in Computer Science",
+      "school": "University of Technology",
+      "location": "Boston, MA",
+      "period": "2015 - 2019",
+      "gpa": "3.8/4.0",
+      "achievements": [
+        "Magna Cum Laude",
+        "Dean's List for 6 semesters",
+        "Computer Science Outstanding Student Award"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Solutions Architect",
+      "issuer": "Amazon Web Services",
+      "date": "2023",
+      "credentialId": "AWS-SAA-12345"
+    },
+    {
+      "name": "React Developer Certification",
+      "issuer": "Meta",
+      "date": "2022",
+      "credentialId": "META-REACT-67890"
+    },
+    {
+      "name": "Google Cloud Professional Developer",
+      "issuer": "Google Cloud",
+      "date": "2022",
+      "credentialId": "GCP-PD-54321"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "E-Commerce Platform",
+      "description": "A full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.",
+      "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+      "technologies": ["React", "Node.js", "PostgreSQL", "Stripe", "AWS"],
+      "category": "web",
+      "githubUrl": "https://github.com",
+      "liveUrl": "https://demo.com",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "AI-Powered Analytics Dashboard",
+      "description": "Real-time analytics dashboard with machine learning insights. Built with Next.js, Python Flask, and TensorFlow.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      "technologies": ["Next.js", "Python", "TensorFlow", "D3.js", "MongoDB"],
+      "category": "ai",
+      "githubUrl": "https://github.com",
+      "liveUrl": "https://demo.com",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Mobile Task Manager",
+      "description": "Cross-platform mobile app for task management with real-time collaboration features. Built with React Native and Firebase.",
+      "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop",
+      "technologies": ["React Native", "Firebase", "Redux", "Expo"],
+      "category": "mobile",
+      "githubUrl": "https://github.com",
+      "liveUrl": "https://demo.com",
+      "featured": false
+    },
+    {
+      "id": 4,
+      "title": "Blockchain Voting System",
+      "description": "Secure voting platform using blockchain technology. Smart contracts built with Solidity and frontend with React.",
+      "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
+      "technologies": ["React", "Solidity", "Web3.js", "Ethereum", "IPFS"],
+      "category": "blockchain",
+      "githubUrl": "https://github.com",
+      "liveUrl": "https://demo.com",
+      "featured": false
+    },
+    {
+      "id": 5,
+      "title": "SaaS Project Management",
+      "description": "Multi-tenant SaaS application for project management with team collaboration, time tracking, and reporting features.",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+      "technologies": ["Vue.js", "Laravel", "MySQL", "Redis", "Docker"],
+      "category": "web",
+      "githubUrl": "https://github.com",
+      "liveUrl": "https://demo.com",
+      "featured": true
+    },
+    {
+      "id": 6,
+      "title": "IoT Smart Home Hub",
+      "description": "Smart home automation system with IoT device management, voice control, and mobile app integration.",
+      "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=400&fit=crop",
+      "technologies": ["Python", "Raspberry Pi", "MQTT", "React", "SQLite"],
+      "category": "iot",
+      "githubUrl": "https://github.com",
+      "liveUrl": "https://demo.com",
+      "featured": false
+    }
+  ],
+  "blogPosts": [
+    {
+      "id": 1,
+      "title": "Building Scalable React Applications with TypeScript",
+      "excerpt": "Learn best practices for structuring large React applications with TypeScript for better maintainability and developer experience.",
+      "content": "",
+      "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop",
+      "author": "Fazilabs",
+      "date": "2024-01-15",
+      "readTime": "8 min read",
+      "tags": ["React", "TypeScript", "Architecture"],
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "The Future of Web Development: AI and Machine Learning Integration",
+      "excerpt": "Exploring how AI is revolutionizing web development workflows and what developers need to know about this emerging trend.",
+      "content": "",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
+      "author": "Fazilabs",
+      "date": "2024-01-10",
+      "readTime": "12 min read",
+      "tags": ["AI", "Machine Learning", "Web Development"],
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Mastering CSS Grid and Flexbox for Modern Layouts",
+      "excerpt": "A comprehensive guide to creating responsive layouts using CSS Grid and Flexbox with practical examples and best practices.",
+      "content": "",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+      "author": "Fazilabs",
+      "date": "2024-01-05",
+      "readTime": "6 min read",
+      "tags": ["CSS", "Frontend", "Responsive Design"],
+      "featured": false
+    },
+    {
+      "id": 4,
+      "title": "Node.js Performance Optimization Techniques",
+      "excerpt": "Deep dive into optimizing Node.js applications for better performance, including memory management and async patterns.",
+      "content": "",
+      "image": "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&h=400&fit=crop",
+      "author": "Fazilabs",
+      "date": "2023-12-28",
+      "readTime": "10 min read",
+      "tags": ["Node.js", "Performance", "Backend"],
+      "featured": false
+    },
+    {
+      "id": 5,
+      "title": "Database Design Patterns for Modern Applications",
+      "excerpt": "Understanding different database design patterns and when to use them in modern web applications.",
+      "content": "",
+      "image": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=400&fit=crop",
+      "author": "Fazilabs",
+      "date": "2023-12-20",
+      "readTime": "15 min read",
+      "tags": ["Database", "Architecture", "Backend"],
+      "featured": true
+    },
+    {
+      "id": 6,
+      "title": "Getting Started with Docker for Web Developers",
+      "excerpt": "A beginner-friendly guide to containerizing web applications with Docker and Docker Compose.",
+      "content": "",
+      "image": "https://images.unsplash.com/photo-1605745341112-85968b19335a?w=600&h=400&fit=crop",
+      "author": "Fazilabs",
+      "date": "2023-12-15",
+      "readTime": "7 min read",
+      "tags": ["Docker", "DevOps", "Containers"],
+      "featured": false
+    }
+  ]
+}
