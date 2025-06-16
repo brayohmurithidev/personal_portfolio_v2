@@ -2,42 +2,24 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send, Github, Linkedin, MessageSquare } from 'lucide-react';
+import {supabase} from "../../supabase/supabase.ts";
+import {toast} from "sonner";
+import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+
+const ContactSchema = Yup.object().shape({
+  name: Yup.string().min(2).max(50).required('Full name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  subject: Yup.string().required('Subject is required'),
+  message: Yup.string().min(10, 'Message too short').required('Message is required'),
+});
+
+
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const [status, setStatus] = useState('');
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    console.log('Form submitted:', formData);
-    setIsSubmitting(false);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
-  };
 
   const contactInfo = [
     {
@@ -109,90 +91,175 @@ const Contact = () => {
             className="glass-card p-8 rounded-2xl"
           >
             <h2 className="text-2xl font-bold text-white mb-6">Send a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-white font-medium mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"
-                    placeholder="John Doe"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-white font-medium mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"
-                    placeholder="john@example.com"
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label htmlFor="subject" className="block text-white font-medium mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"
-                  placeholder="Project Discussion"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-white font-medium mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300 resize-none"
-                  placeholder="Tell me about your project or how I can help you..."
-                />
-              </div>
-              
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-fazilabs-primary to-fazilabs-secondary px-8 py-4 rounded-xl text-white font-semibold hover:scale-105 transition-all duration-300 hover-glow disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center space-x-2"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span>Sending...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send size={20} />
-                    <span>Send Message</span>
-                  </>
-                )}
-              </button>
-            </form>
+            <Formik
+                initialValues={{ name: '', email: '', subject: '', message: '' }}
+                validationSchema={ContactSchema}
+                onSubmit={async (values, { resetForm, setSubmitting }) => {
+                  const { error } = await supabase.from('contact_submissions').insert([values]);
+
+                  if (error) {
+                    toast.error("Failed to send message", {position:"top-right", duration: 5000});
+                    console.error('Error:', error.message);
+                  } else {
+                    toast.success("Message sent!", {position:"top-right", duration: 5000});
+                    resetForm();
+                  }
+
+                  setSubmitting(false);
+                }}
+            >
+              {({ isSubmitting }) => (
+                  <Form className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="name" className="block text-white font-medium mb-2">Full Name</label>
+                        <Field
+                            name="name"
+                            placeholder="John Doe"
+                            className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"
+                        />
+                        <ErrorMessage name="name" component="div" className="text-red-400 text-sm mt-1" />
+                      </div>
+
+                      <div>
+                        <label htmlFor="email" className="block text-white font-medium mb-2">Email Address</label>
+                        <Field
+                            type="email"
+                            name="email"
+                            placeholder="john@example.com"
+                            className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"
+                        />
+                        <ErrorMessage name="email" component="div" className="text-red-400 text-sm mt-1" />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="subject" className="block text-white font-medium mb-2">Subject</label>
+                      <Field
+                          name="subject"
+                          placeholder="Project Discussion"
+                          className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"
+                      />
+                      <ErrorMessage name="subject" component="div" className="text-red-400 text-sm mt-1" />
+                    </div>
+
+                    <div>
+                      <label htmlFor="message" className="block text-white font-medium mb-2">Message</label>
+                      <Field
+                          as="textarea"
+                          name="message"
+                          rows={6}
+                          placeholder="Tell me about your project..."
+                          className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300 resize-none"
+                      />
+                      <ErrorMessage name="message" component="div" className="text-red-400 text-sm mt-1" />
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full bg-gradient-to-r from-fazilabs-primary to-fazilabs-secondary px-8 py-4 rounded-xl text-white font-semibold hover:scale-105 transition-all duration-300 hover-glow disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center space-x-2"
+                    >
+                      {isSubmitting ? (
+                          <>
+                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            <span>Sending...</span>
+                          </>
+                      ) : (
+                          <>
+                            <Send size={20} />
+                            <span>Send Message</span>
+                          </>
+                      )}
+                    </button>
+                  </Form>
+              )}
+            </Formik>
+
+            {/*<form onSubmit={handleSubmit} className="space-y-6">*/}
+            {/*  <div className="grid md:grid-cols-2 gap-6">*/}
+            {/*    <div>*/}
+            {/*      <label htmlFor="name" className="block text-white font-medium mb-2">*/}
+            {/*        Full Name*/}
+            {/*      </label>*/}
+            {/*      <input*/}
+            {/*        type="text"*/}
+            {/*        id="name"*/}
+            {/*        name="name"*/}
+            {/*        value={formData.name}*/}
+            {/*        onChange={handleInputChange}*/}
+            {/*        required*/}
+            {/*        className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"*/}
+            {/*        placeholder="John Doe"*/}
+            {/*      />*/}
+            {/*    </div>*/}
+            {/*    <div>*/}
+            {/*      <label htmlFor="email" className="block text-white font-medium mb-2">*/}
+            {/*        Email Address*/}
+            {/*      </label>*/}
+            {/*      <input*/}
+            {/*        type="email"*/}
+            {/*        id="email"*/}
+            {/*        name="email"*/}
+            {/*        value={formData.email}*/}
+            {/*        onChange={handleInputChange}*/}
+            {/*        required*/}
+            {/*        className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"*/}
+            {/*        placeholder="john@example.com"*/}
+            {/*      />*/}
+            {/*    </div>*/}
+            {/*  </div>*/}
+            {/*  */}
+            {/*  <div>*/}
+            {/*    <label htmlFor="subject" className="block text-white font-medium mb-2">*/}
+            {/*      Subject*/}
+            {/*    </label>*/}
+            {/*    <input*/}
+            {/*      type="text"*/}
+            {/*      id="subject"*/}
+            {/*      name="subject"*/}
+            {/*      value={formData.subject}*/}
+            {/*      onChange={handleInputChange}*/}
+            {/*      required*/}
+            {/*      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"*/}
+            {/*      placeholder="Project Discussion"*/}
+            {/*    />*/}
+            {/*  </div>*/}
+            {/*  */}
+            {/*  <div>*/}
+            {/*    <label htmlFor="message" className="block text-white font-medium mb-2">*/}
+            {/*      Message*/}
+            {/*    </label>*/}
+            {/*    <textarea*/}
+            {/*      id="message"*/}
+            {/*      name="message"*/}
+            {/*      value={formData.message}*/}
+            {/*      onChange={handleInputChange}*/}
+            {/*      required*/}
+            {/*      rows={6}*/}
+            {/*      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300 resize-none"*/}
+            {/*      placeholder="Tell me about your project or how I can help you..."*/}
+            {/*    />*/}
+            {/*  </div>*/}
+            {/*  */}
+            {/*  <button*/}
+            {/*    type="submit"*/}
+            {/*    disabled={isSubmitting}*/}
+            {/*    className="w-full bg-gradient-to-r from-fazilabs-primary to-fazilabs-secondary px-8 py-4 rounded-xl text-white font-semibold hover:scale-105 transition-all duration-300 hover-glow disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center space-x-2"*/}
+            {/*  >*/}
+            {/*    {isSubmitting ? (*/}
+            {/*      <>*/}
+            {/*        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />*/}
+            {/*        <span>Sending...</span>*/}
+            {/*      </>*/}
+            {/*    ) : (*/}
+            {/*      <>*/}
+            {/*        <Send size={20} />*/}
+            {/*        <span>Send Message</span>*/}
+            {/*      </>*/}
+            {/*    )}*/}
+            {/*  </button>*/}
+            {/*</form>*/}
           </motion.div>
 
           {/* Contact Info */}
