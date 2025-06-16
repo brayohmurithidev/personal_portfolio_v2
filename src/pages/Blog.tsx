@@ -77,43 +77,46 @@ const Blog = () => {
   };
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen py-20 ">
+
       <div className="container mx-auto px-6">
         <BlogHeader />
-        
+
         <BlogSearch
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           resultsCount={filteredPosts.length}
         />
 
+        <p className="text-3xl">Coming Soon</p>
+
         {/* Featured Posts - only show if no search query */}
-        {!searchQuery && (
-          <FeaturedSection
-            featuredPosts={featuredPosts}
-            onTagClick={handleTagClick}
-          />
-        )}
+        {/*{!searchQuery && (*/}
+        {/*  <FeaturedSection*/}
+        {/*    featuredPosts={featuredPosts}*/}
+        {/*    onTagClick={handleTagClick}*/}
+        {/*  />*/}
+        {/*)}*/}
 
-        <BlogTagFilter
-          allTags={allTags}
-          activeTag={activeTag}
-          setActiveTag={setActiveTag}
-          searchQuery={searchQuery}
-        />
+        {/*<BlogTagFilter*/}
+        {/*  allTags={allTags}*/}
+        {/*  activeTag={activeTag}*/}
+        {/*  setActiveTag={setActiveTag}*/}
+        {/*  searchQuery={searchQuery}*/}
+        {/*/>*/}
 
-        {filteredPosts.length === 0 ? (
-          <EmptyState
-            searchQuery={searchQuery}
-            activeTag={activeTag}
-            onClearFilters={handleClearFilters}
-          />
-        ) : (
-          <BlogGrid
-            posts={filteredPosts}
-            onTagClick={handleTagClick}
-          />
-        )}
+        {/*{filteredPosts.length === 0 ? (*/}
+        {/*  <EmptyState*/}
+        {/*    searchQuery={searchQuery}*/}
+        {/*    activeTag={activeTag}*/}
+        {/*    onClearFilters={handleClearFilters}*/}
+        {/*  />*/}
+        {/*) : (*/}
+        {/*  <BlogGrid*/}
+        {/*    posts={filteredPosts}*/}
+        {/*    onTagClick={handleTagClick}*/}
+        {/*  />*/}
+        {/*)}*/}
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3 group">
-              <div className="w-12 h-12 bg-gradient-to-br from-fazilabs-primary to-fazilabs-secondary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 bg-gradient-to-br accent-white to-fazilabs-secondary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <img src="/brian-logo.png" alt="Brian Murithi Logo" className="w-full rounded-full" />
                 {/*<span className="text-white font-bold text-lg">F</span>*/}
               </div>
