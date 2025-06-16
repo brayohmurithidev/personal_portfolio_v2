@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send, Github, Linkedin, MessageSquare } from 'lucide-react';
 import {supabase} from "../../supabase/supabase.ts";
@@ -18,6 +18,37 @@ const ContactSchema = Yup.object().shape({
 
 const Contact = () => {
   const [status, setStatus] = useState('');
+
+
+  const calendarButtonRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const scriptId = 'google-calendar-booking-script';
+
+    // Avoid injecting multiple times
+    if (!document.getElementById(scriptId)) {
+      const link = document.createElement('link');
+      link.href = 'https://calendar.google.com/calendar/scheduling-button-script.css';
+      link.rel = 'stylesheet';
+      document.head.appendChild(link);
+
+      const script = document.createElement('script');
+      script.src = 'https://calendar.google.com/calendar/scheduling-button-script.js';
+      script.id = scriptId;
+      script.async = true;
+      script.onload = () => {
+        if (window.calendar && calendarButtonRef.current) {
+          window.calendar.schedulingButton.load({
+            url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3akJCZ07jnU-W6KoBvhTfKlH9zlVDRRdI7_YBMrOZr9UJkhtCXydl5aDXheue4nyrjXqlpDgc7?gv=true',
+            color: '#039BE5',
+            label: 'Schedule a Call',
+            target: calendarButtonRef.current,
+          });
+        }
+      };
+      document.body.appendChild(script);
+    }
+  }, []);
 
 
 
@@ -175,91 +206,6 @@ const Contact = () => {
                   </Form>
               )}
             </Formik>
-
-            {/*<form onSubmit={handleSubmit} className="space-y-6">*/}
-            {/*  <div className="grid md:grid-cols-2 gap-6">*/}
-            {/*    <div>*/}
-            {/*      <label htmlFor="name" className="block text-white font-medium mb-2">*/}
-            {/*        Full Name*/}
-            {/*      </label>*/}
-            {/*      <input*/}
-            {/*        type="text"*/}
-            {/*        id="name"*/}
-            {/*        name="name"*/}
-            {/*        value={formData.name}*/}
-            {/*        onChange={handleInputChange}*/}
-            {/*        required*/}
-            {/*        className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"*/}
-            {/*        placeholder="John Doe"*/}
-            {/*      />*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*      <label htmlFor="email" className="block text-white font-medium mb-2">*/}
-            {/*        Email Address*/}
-            {/*      </label>*/}
-            {/*      <input*/}
-            {/*        type="email"*/}
-            {/*        id="email"*/}
-            {/*        name="email"*/}
-            {/*        value={formData.email}*/}
-            {/*        onChange={handleInputChange}*/}
-            {/*        required*/}
-            {/*        className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"*/}
-            {/*        placeholder="john@example.com"*/}
-            {/*      />*/}
-            {/*    </div>*/}
-            {/*  </div>*/}
-            {/*  */}
-            {/*  <div>*/}
-            {/*    <label htmlFor="subject" className="block text-white font-medium mb-2">*/}
-            {/*      Subject*/}
-            {/*    </label>*/}
-            {/*    <input*/}
-            {/*      type="text"*/}
-            {/*      id="subject"*/}
-            {/*      name="subject"*/}
-            {/*      value={formData.subject}*/}
-            {/*      onChange={handleInputChange}*/}
-            {/*      required*/}
-            {/*      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300"*/}
-            {/*      placeholder="Project Discussion"*/}
-            {/*    />*/}
-            {/*  </div>*/}
-            {/*  */}
-            {/*  <div>*/}
-            {/*    <label htmlFor="message" className="block text-white font-medium mb-2">*/}
-            {/*      Message*/}
-            {/*    </label>*/}
-            {/*    <textarea*/}
-            {/*      id="message"*/}
-            {/*      name="message"*/}
-            {/*      value={formData.message}*/}
-            {/*      onChange={handleInputChange}*/}
-            {/*      required*/}
-            {/*      rows={6}*/}
-            {/*      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-fazilabs-primary focus:outline-none transition-colors duration-300 resize-none"*/}
-            {/*      placeholder="Tell me about your project or how I can help you..."*/}
-            {/*    />*/}
-            {/*  </div>*/}
-            {/*  */}
-            {/*  <button*/}
-            {/*    type="submit"*/}
-            {/*    disabled={isSubmitting}*/}
-            {/*    className="w-full bg-gradient-to-r from-fazilabs-primary to-fazilabs-secondary px-8 py-4 rounded-xl text-white font-semibold hover:scale-105 transition-all duration-300 hover-glow disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center space-x-2"*/}
-            {/*  >*/}
-            {/*    {isSubmitting ? (*/}
-            {/*      <>*/}
-            {/*        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />*/}
-            {/*        <span>Sending...</span>*/}
-            {/*      </>*/}
-            {/*    ) : (*/}
-            {/*      <>*/}
-            {/*        <Send size={20} />*/}
-            {/*        <span>Send Message</span>*/}
-            {/*      </>*/}
-            {/*    )}*/}
-            {/*  </button>*/}
-            {/*</form>*/}
           </motion.div>
 
           {/* Contact Info */}
@@ -361,12 +307,14 @@ const Contact = () => {
               Let's schedule a call to discuss your requirements and explore possibilities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="mailto:murithibrianm@gmail.com?subject=Project%20Discussion"
-                className="bg-gradient-to-r from-fazilabs-primary to-fazilabs-secondary px-8 py-4 rounded-xl text-white font-semibold hover:scale-105 transition-all duration-300 hover-glow"
-              >
-                Schedule a Call
-              </a>
+              <div ref={calendarButtonRef} className="mt-8" />
+
+              {/*<a*/}
+              {/*  href="mailto:murithibrianm@gmail.com?subject=Project%20Discussion"*/}
+              {/*  className="bg-gradient-to-r from-fazilabs-primary to-fazilabs-secondary px-8 py-4 rounded-xl text-white font-semibold hover:scale-105 transition-all duration-300 hover-glow"*/}
+              {/*>*/}
+              {/*  Schedule a Call*/}
+              {/*</a>*/}
               <a
                 href="mailto:murithibrianm@gamil.com"
                 className="glass-card px-8 py-4 rounded-xl text-white font-semibold hover:bg-white/20 transition-all duration-300 border-white/20"
