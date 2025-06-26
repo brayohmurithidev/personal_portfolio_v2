@@ -162,6 +162,28 @@
       "githubUrl": "",
       "liveUrl": "https://triohubwomen.org",
       "featured": true
+    },
+    {
+      "id": 6,
+      "title": "Jenga Events",
+      "description": "A platform that will connect Dj's, MC, Event Planners, Makeup artists and other event service providers with clients. From this platform service providers will be able to also showcase their works.",
+      "image": "/images/jengaevents.png",
+      "technologies": ["React js", "Next js", "Node js", "PostgreSQL", "Microsoft Azure", "Github Actions"],
+      "category": "web",
+      "githubUrl": "",
+      "liveUrl": "https://jengaevents.fazilabs.com/",
+      "featured": true
+    },
+    {
+      "id": 7,
+      "title": "Tech Dj Music Downloader",
+      "description": "A platform for dj's to prepare their music sets on spotify as playlists and download them for use on their live sets.",
+      "image": "/images/techdj.png",
+      "technologies": ["React js", "Next js", "FastAPI", "PostgreSQL", "Microsoft Azure", "Github Actions"],
+      "category": "web",
+      "githubUrl": "",
+      "liveUrl": "https://techdj.fazilabs.com",
+      "featured": true
     }
   ],
   "blogPosts": [
