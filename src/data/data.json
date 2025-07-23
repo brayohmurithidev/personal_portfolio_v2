@@ -184,6 +184,17 @@
       "githubUrl": "",
       "liveUrl": "https://techdj.fazilabs.com",
       "featured": true
+    },
+    {
+      "id": 8,
+      "title": "NGO Donation Platform",
+      "description": "A work-in-progress donation management platform for NGOs to handle donations, campaigns, and donors with transparency.",
+      "image": "/images/ngo-donation.png",
+      "technologies": ["Next js", "Tailwind CSS", "Prisma", "PostgreSQL", "FastAPI", "Shadcn", "Socket.IO"],
+      "category": "web",
+      "githubUrl": "",
+      "liveUrl": "",
+      "featured": false
     }
   ],
   "blogPosts": [
