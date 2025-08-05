@@ -1,7 +1,7 @@
-
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
+import React from "react";
+import {motion} from "framer-motion";
+import {ArrowRight, Calendar, Clock, User} from "lucide-react";
+import {sanitizeTitle} from "@/lib/utils.ts";
 
 interface BlogPost {
   id: number;
@@ -24,15 +24,18 @@ interface BlogCardProps {
 
 const BlogCard = ({ post, index, onTagClick }: BlogCardProps) => {
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
   return (
     <motion.article
+      onClick={() =>
+        (window.location.href = `/blog/${sanitizeTitle(post.title)}`)
+      }
       layout
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -87,7 +90,10 @@ const BlogCard = ({ post, index, onTagClick }: BlogCardProps) => {
             <User size={16} className="text-gray-400 mr-2" />
             <span className="text-gray-400 text-sm">{post.author}</span>
           </div>
-          <ArrowRight size={16} className="text-fazilabs-accent group-hover:translate-x-1 transition-transform duration-300" />
+          <ArrowRight
+            size={16}
+            className="text-fazilabs-accent group-hover:translate-x-1 transition-transform duration-300"
+          />
         </div>
       </div>
     </motion.article>

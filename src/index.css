@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -46,6 +45,45 @@
     --sidebar-border: 10 10% 15%;
     --sidebar-ring: 238 68% 68%;
   }
+  /* DARK THEME */
+  .dark {
+    --background: 10 10% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 10 10% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 10 10% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 238 68% 68%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 258 68% 68%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 10 10% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 188 100% 44%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 10 10% 15%;
+    --input: 10 10% 15%;
+    --ring: 238 68% 68%;
+
+    --sidebar-background: 10 10% 4%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 238 68% 68%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 10 10% 8%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 10 10% 15%;
+    --sidebar-ring: 238 68% 68%;
+  }
 }
 
 @layer base {
@@ -55,7 +93,13 @@
 
   body {
     @apply bg-fazilabs-dark text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      "Roboto",
+      sans-serif;
   }
 
   html {
@@ -67,22 +111,22 @@
   .glass {
     @apply bg-white/10 backdrop-blur-md border border-white/20;
   }
-  
+
   .glass-card {
     @apply bg-card/40 backdrop-blur-md border border-white/10 rounded-xl;
   }
-  
+
   .gradient-text {
     @apply bg-gradient-to-r from-fazilabs-primary via-fazilabs-secondary to-fazilabs-accent bg-clip-text text-transparent;
   }
-  
+
   .gradient-border {
     @apply relative before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-fazilabs-primary before:via-fazilabs-secondary before:to-fazilabs-accent before:rounded-xl before:-z-10;
     background: linear-gradient(to right, #6366f1, #8b5cf6, #06b6d4);
     border-radius: 0.75rem;
     padding: 1px;
   }
-  
+
   .hover-glow {
     @apply transition-all duration-300 hover:shadow-lg hover:shadow-fazilabs-primary/25;
   }

@@ -1,8 +1,7 @@
-
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Code, Github, Linkedin, Mail } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import {motion} from 'framer-motion';
+import {ArrowRight, Code, Github, Linkedin, Mail} from 'lucide-react';
+import {Link} from 'react-router';
 
 const Home = () => {
   const skills = [

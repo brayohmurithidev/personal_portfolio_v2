@@ -1,8 +1,8 @@
-
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
-import { Home, User, Code, FileText, Mail, Github, Linkedin } from 'lucide-react';
+import {motion} from 'framer-motion';
+import {Link, useLocation} from 'react-router';
+import {Code, FileText, Github, Home, Linkedin, Mail, User} from 'lucide-react';
+import {ModeToggle} from "@/components/mode-toggle.tsx";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -69,6 +69,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               >
                 <Linkedin size={20} />
               </a>
+              <ModeToggle />
             </div>
           </div>
         </div>
